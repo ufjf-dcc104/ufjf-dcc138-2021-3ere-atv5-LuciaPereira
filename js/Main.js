@@ -27,6 +27,10 @@ input.configurarTeclado({
     "ArrowRight" : "MOVE_DIREITA",
     "ArrowUp" : "MOVE_CIMA",
     "ArrowDown" : "MOVE_BAIXO",
+    a: "MOVE_LEFT",
+    b: "MOVE_RIGHT",
+    c: "MOVE_UP",
+    d: "MOVE_DOWN",
     ' ': 'PROXIMA_CENA'
 });
 const game = new Game(canvas,assets,input);
@@ -39,8 +43,8 @@ game.adicionarCena("jogo",cena1);
 
 game.adicionarCena("fim", cena2);
 
-
-cena1.iniciar();
+game.iniciar();
+//cena1.iniciar();
 ///novoInimigo();
 
 

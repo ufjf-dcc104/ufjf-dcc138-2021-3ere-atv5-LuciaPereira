@@ -8,7 +8,9 @@ export default class Sprite{
         w=20, 
         h=20, 
         color = "white", vx = 0, vy = 0,
-        controlar = () => { }, tags = [] } = {}) {
+        //controlar = () => { },
+         tags = [],
+        imagem, } = {}) {
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -19,20 +21,37 @@ export default class Sprite{
         this.cena = null;
         this.mx = 0;
         this.my = 0;
-        this.controlar = controlar;
+        //this.controlar = controlar;
         this.tags = new Set();
         tags.forEach(tag => this.tags.add(tag));
+        this.p = 3;
+        this.po = [
+            { row: 8, init: 0, end: 8, vel: 5, action: "up" },
+            { row: 9, init: 0, end: 8, vel: 5, action: "left" },
+            { row: 10, init: 0, end: 8, vel: 5, action: "down" },
+            { row: 11, init: 0, end: 8, vel: 5, action: "right" },
+          ];
+          this.image = image;
+          this.quadro = this.po[this.p].init;
     }
     desenhar(ctx){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x - this.w/2,this.y - this.h/2,this.w, this.h);
-        ctx.strokeStyle = "blue";
-        ctx.strokeRect(
-            this.mx*this.cena.mapa.SIZE,
-            this.my*this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE
-        );
+        //ctx.fillStyle = this.color;
+        //ctx.fillRect(this.x - this.w/2,this.y - this.h/2,this.w, this.h);
+        //ctx.strokeStyle = "blue";
+        //ctx.strokeRect(
+            //this.mx*this.cena.mapa.SIZE,
+            //this.my*this.cena.mapa.SIZE,
+            ctx.drawImage(
+                this.imagem,
+                Math.floor(this.frame) * 64,
+                this.po[this.p].row * 64,
+                64,
+                64,
+                this.x - this.cena.map.SIZE/2,
+                this.y - this.cena.map.SIZE/2 - this.h,
+                this.cena.mapa.SIZE,
+                this.cena.mapa.SIZE
+            );
     }
     controlar(dt){
 

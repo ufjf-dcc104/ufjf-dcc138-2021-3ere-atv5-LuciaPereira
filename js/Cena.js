@@ -6,12 +6,12 @@ export default class Cena{
         this.canvas = canvas;
         this.ctx = canvas?.getContext("2d");       
         this.assets = assets;
-        this.mapa = null;
+        this.game = null;
         this.preparar();
         
     }
     desenhar(){
-        this.ctx.fillStyle = "lightblue";
+        this.ctx.fillStyle = "#2f8136";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.mapa?.desenhar(this.ctx);
         //this.mapa?.desenhar(this.ctx,this.assets);
@@ -19,12 +19,12 @@ export default class Cena{
         if(this.assets.acabou()){
             for (let s = 0; s < this.sprites.length; s++) {
             const sprite = this.sprites[s];
-            sprite.desenhar(this.ctx);
+            sprite.desenhar(this.ctx,this.dt);
             sprite.aplicaRestricoes()
             }            
         }
-        this.ctx.fillStyle = "yellow";
-        this.ctx.fillText(this.assets?.progresso(),10,20);
+        //this.ctx.fillStyle = "yellow";
+       // this.ctx.fillText(this.assets?.progresso(),10,20);
     }
     adicionar(sprite){
         sprite.cena = this;
@@ -50,7 +50,7 @@ export default class Cena{
         this.removerSprites();
 
         
-        if (this.rodando) this.iniciar();
+        if (this.rodando){ this.iniciar();}
         this.t0 = t;
     }
     iniciar(){
@@ -61,7 +61,7 @@ export default class Cena{
         this.rodando = false;
         cancelAnimationFrame(this.idAdnin);
         this.t0 = null;
-        this.dt = 0;
+        //this.dt = 0;
     }
     checaColisao(){
         for (let a = 0; a < this.sprites.length - 1; a++) {
@@ -79,6 +79,7 @@ export default class Cena{
     quandoColidir(a, b){
         if(this.aRemover.includes(a)){
             this.aRemover.push(a); 
+            
         }
         if (!this.aRemover.includes(b)) {
             this.aRemover.push(b); 
