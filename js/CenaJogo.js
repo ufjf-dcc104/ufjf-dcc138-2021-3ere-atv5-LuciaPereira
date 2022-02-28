@@ -8,16 +8,36 @@ import SpriteSaida from './SpriteSaida.js'
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
-        if (!this.aRemover.includes(a));
-            this.aRemover.push(a);
-
-        if (!this.aRemover.includes(b));
-            this.aRemover.push(b);
-
-        if (a.tags.has('pc') && b.tags.has('enemy')) {
-            this.game.selecionaCena('fim');
+        if (a.tags.has("pc") && b.tags.has("saida")) {
+            this.game.selecionaCena("victoria");
         }
+        else if (a.tags.has("pc") && b.tags.has("coin")) {
+            this.aRemover.push(b);
+            this.assets.play("coin");
+            this.game.pontos += 10;
+        } 
+        else {
+            if (a.tags.has("pc") || (a.tags.has("enemy") && b.tags.has("enemy")))
+            {
+                if (!this.toRemove.includes(a)) {
+                    this.toRemove.push(a);
+                    this.assets.play("boom");
+                }
+                if (!this.aRemover.includes(b)) {
+                    this.aRemover.push(b);
+                    this.assets.play("boom");
+                }
+            }
+            if (a.tags.has("pc") && b.tags.has("enemy")) 
+            {
+                this.game.selecionaCena("fim");
+            }
+        }
+    
     }
+    
+
+
     preparar() {
         super.preparar();
         const mapa1 = new Mapa();
