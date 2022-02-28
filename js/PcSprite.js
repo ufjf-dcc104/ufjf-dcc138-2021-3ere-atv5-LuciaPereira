@@ -3,10 +3,11 @@ import Sprite from "./Sprite.js";
 export default class PcSprite extends Sprite {
   desenhar(ctx, dt) {
     if (this.vx || this.vy) {
-      this.quadro =
-        this.quadro > this.po[this.p].end
-          ? this.po[this.p].init
-          : this.quadro + this.po[this.p].vel * dt;
+      /*this.quadro =
+        this.quadro > this.poses[this.p].end
+          ? this.poses[this.p].init
+          : this.quadro + this.poses[this.p].vel * dt;*/
+          this.executar(dt);
     } else {
       this.quadro = 0;
     }

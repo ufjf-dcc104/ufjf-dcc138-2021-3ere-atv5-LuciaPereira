@@ -10,7 +10,15 @@ export default class Sprite{
         color = "white", vx = 0, vy = 0,
         //controlar = () => { },
          tags = [],
-        imagem, } = {}) {
+        image, 
+        p = 3,
+        poses = [
+            { row: 8, init: 0, end: 8, vel: 5, action: "up" },
+            { row: 9, init: 0, end: 8, vel: 5, action: "left" },
+            { row: 10, init: 0, end: 8, vel: 5, action: "down" },
+            { row: 11, init: 0, end: 8, vel: 5, action: "right" },
+          ]
+        } = {}) {
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -24,15 +32,10 @@ export default class Sprite{
         //this.controlar = controlar;
         this.tags = new Set();
         tags.forEach(tag => this.tags.add(tag));
-        this.p = 3;
-        this.po = [
-            { row: 8, init: 0, end: 8, vel: 5, action: "up" },
-            { row: 9, init: 0, end: 8, vel: 5, action: "left" },
-            { row: 10, init: 0, end: 8, vel: 5, action: "down" },
-            { row: 11, init: 0, end: 8, vel: 5, action: "right" },
-          ];
-          this.image = image;
-          this.quadro = this.po[this.p].init;
+        this.p = p;
+        this.poses = poses;
+        this.image = image;
+        this.quadro = this.poses[this.p].init;
     }
     desenhar(ctx){
         //ctx.fillStyle = this.color;
@@ -42,17 +45,23 @@ export default class Sprite{
             //this.mx*this.cena.mapa.SIZE,
             //this.my*this.cena.mapa.SIZE,
             ctx.drawImage(
-                this.imagem,
-                Math.floor(this.frame) * 64,
-                this.po[this.p].row * 64,
+                this.image,
+                Math.floor(this.quadro) * 64,
+                this.poses[this.p].row * 64,
                 64,
                 64,
-                this.x - this.cena.map.SIZE/2,
-                this.y - this.cena.map.SIZE/2 - this.h,
+                this.x - this.cena.mapa.SIZE/2,
+                this.y - this.cena.mapa.SIZE/2 - this.h,
                 this.cena.mapa.SIZE,
                 this.cena.mapa.SIZE
             );
     }
+    executar(dt) {
+        this.quadro =
+          this.quadro > this.poses[this.p].end
+            ? this.poses[this.p].init
+            : this.quadro + this.poses[this.p].vel * dt;
+      }
     controlar(dt){
 
     }

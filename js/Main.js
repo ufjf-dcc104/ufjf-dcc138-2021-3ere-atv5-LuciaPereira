@@ -15,6 +15,7 @@ const assets = new AssetManager(mixer);
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto","assets/garoto.png");
 assets.carregaImagem("orc","assets/orc.png");
+assets.carregaImagem("orc","assets/coin.png");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
