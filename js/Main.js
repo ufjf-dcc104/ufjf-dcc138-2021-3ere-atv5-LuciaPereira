@@ -16,6 +16,7 @@ assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto","assets/garoto.png");
 assets.carregaImagem("orc","assets/orc.png");
 assets.carregaImagem("orc","assets/coin.png");
+assets.carregaImagem("arvorw","assets/arvore.png");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
@@ -38,16 +39,11 @@ const game = new Game(canvas,assets,input);
 const cena0 = new CenaCarregando();
 const cena1 = new CenaJogo();
 const cena2 = new CenaFim();
-game.adicionarCena('carregando', cena0);
+game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo",cena1);
-
-
 game.adicionarCena("fim", cena2);
 
 game.iniciar();
-//cena1.iniciar();
-///novoInimigo();
-
 
 document.addEventListener("keydown" , (e)=>{
     switch (e.key) {
@@ -62,8 +58,7 @@ document.addEventListener("keydown" , (e)=>{
                     break;
                     case "b":
                         assets.play("boom");
-                        break;
-                       
+                        break;                      
 
      
     }

@@ -13,7 +13,7 @@ export default class Mapa{
             }
             
         }this.cena = null;
-        this.mapa = null;
+       // this.mapa = null;
     }
     desenhar(ctx){
         for (let l =0;l < this.LINHAS;l++) {

@@ -3,6 +3,8 @@ import Mapa from "./Mapa.js"
 import PcSprite from './PcSprite.js'
 import InimigoSprite from './InimigoSprite.js'
 import modeloMapa1 from './maps/mapa1.js'
+import GeraSprite from './GeraSprite.js'
+import SpriteSaida from './SpriteSaida.js'
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
@@ -48,8 +50,25 @@ export default class CenaJogo extends Cena {
           this.adicionar(en1);
           this.adicionar(en2);
           this.adicionar(en3);
+
+          const gerar = new GeraSprite(this);
+            for (let i = 0; i < 5; i++) {
+            gerar.create("coin", ["coin"]);
         }
-      }
+
+        const sair = new SpriteSaida({
+            x: 64 * 13 -16,
+            y: 64 * 9 - 10,
+            image: this.assets?.getImage("sair"),
+            tags: ["sair"],
+            p: 0,
+            poses: [{ row: 0, init: 0, end: 4, vel: 5, action: "abrir" }]
+        });
+        this.adicionar(sair);
+  
+
+    }
+}
         
     
     

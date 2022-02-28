@@ -55,7 +55,7 @@ export default class Cena{
     }
     iniciar(){
         this.rodando = true;
-        this.idAdnin = requestAnimationFrame((t) =>{ this.quadro(t);});
+        this.idAdnin = requestAnimationFrame((t) => this.quadro(t));
     }
     parar(){
         this.rodando = false;

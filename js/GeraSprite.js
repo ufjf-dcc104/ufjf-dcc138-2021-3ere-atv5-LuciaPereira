@@ -1,9 +1,8 @@
-import SpriteMoeda from "./SpriteMoeda";
+import SpriteMoeda from "./SpriteMoeda.js";
 
 export default class GeraSprite {
   constructor(cena) {
-    this.cena = cena;
-  }
+    this.cena = cena;  }
 
   geraPosicao() {
     const x = Math.floor(Math.random() * 14);
