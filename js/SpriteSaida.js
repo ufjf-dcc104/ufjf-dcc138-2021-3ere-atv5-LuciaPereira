@@ -8,7 +8,7 @@ export default class SpriteSaida extends Sprite {
             : this.quadro + this.poses[this.p].vel * dt;
       }
     desenhar(ctx, dt) {
-    if (this.cena.pointos >= 10) {
+    if (this.cena.game.pontos >= 10) {
         this.executar(dt);
       }
     ctx.drawImage(

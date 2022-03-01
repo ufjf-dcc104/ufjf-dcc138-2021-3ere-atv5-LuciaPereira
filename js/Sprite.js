@@ -29,7 +29,6 @@ export default class Sprite{
         this.cena = null;
         this.mx = 0;
         this.my = 0;
-        //this.controlar = controlar;
         this.tags = new Set();
         tags.forEach(tag => this.tags.add(tag));
         this.p = p;
@@ -38,13 +37,7 @@ export default class Sprite{
         this.quadro = this.poses[this.p].init;
     }
     desenhar(ctx){
-        //ctx.fillStyle = this.color;
-        //ctx.fillRect(this.x - this.w/2,this.y - this.h/2,this.w, this.h);
-        //ctx.strokeStyle = "blue";
-        //ctx.strokeRect(
-            //this.mx*this.cena.mapa.SIZE,
-            //this.my*this.cena.mapa.SIZE,
-            ctx.drawImage(
+                ctx.drawImage(
                 this.image,
                 Math.floor(this.quadro) * 64,
                 this.poses[this.p].row * 64,

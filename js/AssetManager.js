@@ -32,7 +32,7 @@ export default class AssetManager{
     }
 
 
-    img(chave){
+    getImage(chave){
         return this.imagens.get(chave);
     }
     audio(chave){

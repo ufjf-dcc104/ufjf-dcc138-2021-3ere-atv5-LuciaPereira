@@ -2,11 +2,7 @@ import Sprite from "./Sprite.js";
 
 export default class InimigoSprite extends Sprite {
   desenhar(ctx, dt) {
-    /*this.quadro =
-      this.quadro > this.poses[this.p].end
-        ? this.poses[this.p].init
-        : this.quadro + this.poses[this.p].vel * dt;*/
-    this.executar(dt);
+        this.executar(dt);
     super.desenhar(ctx, dt);
   }
 

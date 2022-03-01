@@ -1,11 +1,11 @@
 import InputManager from "./InputManager.js";
 import Mixer from "./Mixer.js";
 import AssetManager from "./AssetManager.js";
-import Sprite from "./Sprite.js";
 import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js"
 import CenaCarregando from "./CenaCarregando.js"
 import CenaFim from "./CenaFim.js"
+import CenaVitoria from "./CenaVitoria.js";
 
 
 const input = new InputManager();
@@ -16,7 +16,7 @@ assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto","assets/garoto.png");
 assets.carregaImagem("orc","assets/orc.png");
 assets.carregaImagem("orc","assets/coin.png");
-assets.carregaImagem("arvorw","assets/arvore.png");
+assets.carregaImagem("arvore","assets/arvore.png");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
@@ -39,9 +39,11 @@ const game = new Game(canvas,assets,input);
 const cena0 = new CenaCarregando();
 const cena1 = new CenaJogo();
 const cena2 = new CenaFim();
+const cena3 = new CenaVitoria();
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo",cena1);
 game.adicionarCena("fim", cena2);
+game.adicionarCena("vitoria", cena3);
 
 game.iniciar();
 

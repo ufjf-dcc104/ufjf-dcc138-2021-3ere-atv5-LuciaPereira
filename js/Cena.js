@@ -23,8 +23,6 @@ export default class Cena{
             sprite.aplicaRestricoes()
             }            
         }
-        //this.ctx.fillStyle = "yellow";
-       // this.ctx.fillText(this.assets?.progresso(),10,20);
     }
     adicionar(sprite){
         sprite.cena = this;
@@ -105,7 +103,7 @@ export default class Cena{
         this.dt = 0;
         this.idAnim = null;
         this.mapa = null;
-        this.rodando = true;
+        //this.rodando = true;
     }
    
 }
