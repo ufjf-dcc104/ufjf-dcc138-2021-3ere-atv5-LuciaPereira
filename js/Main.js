@@ -14,25 +14,24 @@ const assets = new AssetManager(mixer);
 
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto","assets/garoto.png");
-assets.carregaImagem("orc","assets/orc.png");
-assets.carregaImagem("orc","assets/coin.png");
-assets.carregaImagem("arvore","assets/arvore.png");
+assets.carregaImagem("ghost","assets/ghost.png");
+assets.carregaImagem("chao","assets/chao.png");
+assets.carregaImagem("parede","assets/parede.png");
+assets.carregaImagem("coin","assets/coin.png");
+assets.carregaImagem("clay","assets/clay.png");
+assets.carregaImagem("porta","assets/porta.png");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
-canvas.width = 16*32;
-canvas.height = 14*32;
+canvas.width = 16*64;
+canvas.height = 14*64;
 
 input.configurarTeclado({
     "ArrowLeft" : "MOVE_ESQUERDA",
     "ArrowRight" : "MOVE_DIREITA",
     "ArrowUp" : "MOVE_CIMA",
     "ArrowDown" : "MOVE_BAIXO",
-    a: "MOVE_LEFT",
-    b: "MOVE_RIGHT",
-    c: "MOVE_UP",
-    d: "MOVE_DOWN",
     ' ': 'PROXIMA_CENA'
 });
 const game = new Game(canvas,assets,input);
@@ -60,6 +59,8 @@ document.addEventListener("keydown" , (e)=>{
                     break;
                     case "b":
                         assets.play("boom");
+                        break;
+                        default:
                         break;                      
 
      

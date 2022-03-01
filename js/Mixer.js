@@ -1,4 +1,4 @@
-export default class mixer{
+export default class Mixer{
     constructor(numCanais){
         this.CANAIS = 0;
         this.canais = [];

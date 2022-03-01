@@ -3,7 +3,20 @@ import Sprite from "./Sprite.js";
 export default class InimigoSprite extends Sprite {
   desenhar(ctx, dt) {
         this.executar(dt);
-    super.desenhar(ctx, dt);
+    //super.desenhar(ctx, dt);
+    ctx.drawImage(
+      this.cena.assets.img("esqueleto"),
+      // sx, sy, sw, sh
+      Math.floor(this.quadro) * 64,
+      this.pose * 64,
+      64,
+      64,
+      // dx, dy, dw, dh
+      this.x - this.w / 2 - 4,
+      this.y - this.h / 2 - 7,
+      this.w + 8,
+      this.h + 8
+    ); // 
   }
 
   escolheAlvo(alvo) {

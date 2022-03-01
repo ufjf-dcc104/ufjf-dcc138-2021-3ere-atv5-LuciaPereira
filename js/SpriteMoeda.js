@@ -4,7 +4,7 @@ export default class SpriteMoeda extends Sprite {
   draw(ctx, dt) {
     this.executar(dt);
     ctx.drawImage(
-      this.image,
+      this.cena.assets.img("coin"),
       Math.floor(this.quadro) * 16,
       this.poses[this.p].row * 16,
       16,

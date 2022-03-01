@@ -7,6 +7,7 @@ export default class Cena{
         this.ctx = canvas?.getContext("2d");       
         this.assets = assets;
         this.game = null;
+        this.pontos = 0;
         this.preparar();
         
     }
@@ -14,8 +15,7 @@ export default class Cena{
         this.ctx.fillStyle = "#2f8136";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.mapa?.desenhar(this.ctx);
-        //this.mapa?.desenhar(this.ctx,this.assets);
-
+        
         if(this.assets.acabou()){
             for (let s = 0; s < this.sprites.length; s++) {
             const sprite = this.sprites[s];
@@ -23,6 +23,9 @@ export default class Cena{
             sprite.aplicaRestricoes()
             }            
         }
+        //this.ctx.fillStyle = "yellow";
+        //this.ctx.textAlign = "left";
+       // this.ctx.fillText(`Pontos: ${this.game.getPontos()}`, 10, 20);
     }
     adicionar(sprite){
         sprite.cena = this;
@@ -103,7 +106,7 @@ export default class Cena{
         this.dt = 0;
         this.idAnim = null;
         this.mapa = null;
-        //this.rodando = true;
+        this.rodando = true;
     }
    
 }

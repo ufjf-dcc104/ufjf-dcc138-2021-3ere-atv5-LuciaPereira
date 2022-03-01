@@ -9,7 +9,7 @@ export default class AssetManager{
     }
     carregaImagem(chave, source){
         const img1 = new Image();
-        const that = this;
+        //const that = this;
         img1.addEventListener("load",()=>{
             console.log(`Imagem ${this.carregadas}/${this.aCarregar} carregada`);
             this.carregadas++;
@@ -20,10 +20,10 @@ export default class AssetManager{
     }
     carregaAudio(chave, source){
         const audio = new Audio();
-        const that = this;
+        //const that = this;
         
         audio.addEventListener("loadeddata",()=>{
-            console.log(`Audio ${that.carregadas}/${this.aCarregar} carregada`);
+            console.log(`Audio ${this.carregadas}/${this.aCarregar} carregada`);
             this.carregadas++;
         });
         audio.src= source;
@@ -32,7 +32,7 @@ export default class AssetManager{
     }
 
 
-    getImage(chave){
+    img(chave){
         return this.imagens.get(chave);
     }
     audio(chave){

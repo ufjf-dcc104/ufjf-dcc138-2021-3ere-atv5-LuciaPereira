@@ -16,7 +16,7 @@ export default class GeraSprite {
   create(imageKey, tags) {
     const sprite = new SpriteMoeda({
       ...this.geraPosicao(),
-      image: this.cena.assets?.getImage(imageKey),
+      image: this.cena.assets?.img(imageKey),
       tags: tags,
       p: 0,
       poses: [{ row: 0, init: 0, end: 7, vel: 5, action: "rotate" }]

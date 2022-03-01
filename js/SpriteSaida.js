@@ -11,16 +11,11 @@ export default class SpriteSaida extends Sprite {
     if (this.cena.game.pontos >= 10) {
         this.executar(dt);
       }
-    ctx.drawImage(
-      this.image,
-      Math.floor(this.quadro) * 16,
-      this.poses[this.p].row * 32,
-      16,
-      32,
-      this.x - this.cena.mapa.SIZE / 2,
-      this.y - this.cena.mapa.SIZE / 2 - this.h,
-      this.cena.mapa.SIZE/2,
-      this.cena.mapa.SIZE
-    );
+      ctx.drawImage(
+        this.cena.assets.img("porta"),
+        this.x - this.w / 2,
+        this.y - this.h / 2
+      );
+    
   }
 }
