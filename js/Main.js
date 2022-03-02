@@ -3,9 +3,9 @@ import Mixer from "./Mixer.js";
 import AssetManager from "./AssetManager.js";
 import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js"
+import CenaJogo2 from "./CenaJogo2.js"
 import CenaCarregando from "./CenaCarregando.js"
 import CenaFim from "./CenaFim.js"
-import CenaVitoria from "./CenaVitoria.js";
 
 
 const input = new InputManager();
@@ -20,7 +20,7 @@ assets.carregaImagem("chao","assets/chao.png");
 assets.carregaImagem("parede","assets/parede.png");
 assets.carregaImagem("coin","assets/coin.png");
 assets.carregaImagem("clay","assets/clay.png");
-assets.carregaImagem("porta","assets/porta.png");
+assets.carregaAudio("hurt","assets/hurt.wav");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
@@ -40,12 +40,10 @@ const cena0 = new CenaCarregando();
 const cena1 = new CenaJogo();
 const cena2 = new CenaJogo2();
 const cena3 = new CenaFim();
-const cena4 = new CenaVitoria();
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo",cena1);
 game.adicionarCena("jogo2",cena2);
 game.adicionarCena("fim", cena3);
-game.adicionarCena("vitoria", cena4);
 
 game.iniciar();
 

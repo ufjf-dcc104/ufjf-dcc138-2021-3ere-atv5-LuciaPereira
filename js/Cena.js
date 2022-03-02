@@ -1,3 +1,4 @@
+import Sprite from "./Sprite.js"
 export default class Cena{
     /* E responsavel por desenhar elementos na tela eum uma animaçãco
     */
@@ -7,9 +8,9 @@ export default class Cena{
         this.ctx = canvas?.getContext("2d");       
         this.assets = assets;
         this.game = null;
+        this.sprites = [];
         this.pontos = 0;
         this.preparar();
-        this.atual = null;
         
     }
     desenhar(){
@@ -24,9 +25,7 @@ export default class Cena{
             sprite.aplicaRestricoes()
             }            
         }
-        //this.ctx.fillStyle = "yellow";
-        //this.ctx.textAlign = "left";
-       // this.ctx.fillText(`Pontos: ${this.game.getPontos()}`, 10, 20);
+        
     }
     adicionar(sprite){
         sprite.cena = this;
@@ -86,6 +85,8 @@ export default class Cena{
         if (!this.aRemover.includes(b)) {
             this.aRemover.push(b); 
         }
+        this.assets.play("hurt");
+        console.log(this.toRemove);
     }
     removerSprites(){
         for(const alvo of this.aRemover){
@@ -108,10 +109,56 @@ export default class Cena{
         this.idAnim = null;
         this.mapa = null;
         this.rodando = true;
-        this.atual = mapa;
+        
     }
     atualizaPontos(){
         document.getElementById("pontos").textContent = parseInt(document.getElementById("pontos").textContent) + 1;
+    }
+    criaSprites(num = 1, chaseFunction, randomColor) {
+        let sprites = [];
+        for (let i = 0; i < num; i++) {
+          let sprite = new Sprite({
+            x: this.getRandomInt(40, 400),
+            y: this.getRandomInt(50, 275),
+            vx: this.getRandomInt(-10, 10),
+            vy: this.getRandomInt(-10, 10),
+            color: randomColor == true ? this.getRandomColor() : "red",
+            tags: ["enemy"],
+            control: chaseFunction,
+    
+          });
+          sprites.push(sprite);
+        }
+        return sprites;
+    }
+    adicionaSprites(num, chaseFunction, randomColor)
+    {
+      let sprites = this.criaSprites(num, chaseFunction, randomColor);
+      for (let i = 0; i < sprites.length; i++) {
+        this.adicionar(sprites[i]);
       }
-   
+    }
+    
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+    
+      getRandomColor() {
+        let letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+      geraSprite(interval){
+          setInterval(() => { this.adicionaSprites(1);}, interval);
+      
+      }
+      
+    
+     
+    
 }
