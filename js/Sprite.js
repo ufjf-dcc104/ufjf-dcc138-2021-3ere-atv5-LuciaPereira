@@ -90,7 +90,6 @@ export default class Sprite{
     aplicaRestricoesEsquerda(pmx,pmy){
         const SIZE = this.cena.mapa.SIZE;
         if(this.vx<0){
-            
             if(this.cena.mapa.tiles[pmy][pmx] !== 0){
                 const tile = {
                     x:pmx*SIZE + SIZE/2, 

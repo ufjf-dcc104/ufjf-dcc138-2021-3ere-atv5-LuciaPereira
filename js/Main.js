@@ -12,16 +12,11 @@ const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 
-assets.carregaImagem("garota", "assets/garota.png");
-assets.carregaImagem("esqueleto","assets/garoto.png");
-assets.carregaImagem("ghost","assets/ghost.png");
-assets.carregaImagem("arvore","assets/arvore.png");
+assets.carregaImagem("arvores","assets/arvores.png");
 assets.carregaImagem("chao","assets/chao.png");
 assets.carregaImagem("parede","assets/parede.png");
-assets.carregaImagem("coin","assets/coin.png");
-assets.carregaImagem("clay","assets/clay.png");
-assets.carregaAudio("hurt","assets/hurt.wav");
-assets.carregaAudio("moeda","assets/coin.wav");
+assets.carregaAudio("hurt","assets/hurt.wav"); 
+assets.carregaAudio("coin","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
@@ -29,10 +24,10 @@ canvas.width = 14*32;
 canvas.height = 10*32;
 
 input.configurarTeclado({
-    "ArrowLeft" : "MOVE_ESQUERDA",
-    "ArrowRight" : "MOVE_DIREITA",
-    "ArrowUp" : "MOVE_CIMA",
-    "ArrowDown" : "MOVE_BAIXO",
+    ArrowLeft : "MOVE_ESQUERDA",
+    ArrowRight : "MOVE_DIREITA",
+    ArrowUp : "MOVE_CIMA",
+    ArrowDown : "MOVE_BAIXO",
     ' ': 'PROXIMA_CENA'
 });
 const game = new Game(canvas,assets,input);
@@ -56,14 +51,12 @@ document.addEventListener("keydown" , (e)=>{
                 game.parar();
                 break;
                 case "c":
-                    assets.play("moeda");
+                    assets.play("coin");
                     break;
                     case "b":
                         assets.play("boom");
                         break;
-                        default:
-                        break;                      
-
+                        
      
     }
 });

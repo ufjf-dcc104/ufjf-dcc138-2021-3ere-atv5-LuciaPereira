@@ -21,7 +21,7 @@ export default class Cena{
         if(this.assets.acabou()){
             for (let s = 0; s < this.sprites.length; s++) {
             const sprite = this.sprites[s];
-            sprite.desenhar(this.ctx,this.dt);
+            sprite.desenhar(this.ctx);
             sprite.aplicaRestricoes()
             }            
         }
@@ -34,12 +34,9 @@ export default class Cena{
     passo(dt){
         if(this.assets.acabou()){
             for (const sprite of this.sprites) {
-                sprite.passo(dt);
-                
+                sprite.passo(dt);                
             }
-
-        }
-        
+        }        
     }
     quadro(t){
         this.t0 = this.t0 ?? t;
@@ -49,7 +46,6 @@ export default class Cena{
         this.desenhar();
         this.checaColisao();
         this.removerSprites();
-
         
         if (this.rodando){ this.iniciar();}
         this.t0 = t;
@@ -62,7 +58,7 @@ export default class Cena{
         this.rodando = false;
         cancelAnimationFrame(this.idAdnin);
         this.t0 = null;
-        //this.dt = 0;
+        this.dt = 0;
     }
     checaColisao(){
         for (let a = 0; a < this.sprites.length - 1; a++) {
@@ -86,7 +82,7 @@ export default class Cena{
             this.aRemover.push(b); 
         }
         this.assets.play("hurt");
-        console.log(this.toRemove);
+        console.log(this.aRemover);
     }
     removerSprites(){
         for(const alvo of this.aRemover){
