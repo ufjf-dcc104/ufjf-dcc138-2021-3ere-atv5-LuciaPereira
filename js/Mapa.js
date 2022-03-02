@@ -23,10 +23,11 @@ export default class Mapa{
                     ctx.drawImage(this.cena.assets.img("parede"), c*this.SIZE, l*this.SIZE);
                     break;
                     case 2:
-                    ctx.drawImage(this.cena.assets.img("ghost"), c*this.SIZE, l*this.SIZE);
+                    ctx.drawImage(this.cena.assets.img("arvore"), c*this.SIZE, l*this.SIZE);
                     break;
                     default:
-                    ctx.drawImage(this.cena.assets.img("chao"), c*this.SIZE, l*this.SIZE);                    
+                    ctx.drawImage(this.cena.assets.img("chao"), c*this.SIZE, l*this.SIZE);
+                   
                 }
             }
             

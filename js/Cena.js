@@ -9,6 +9,7 @@ export default class Cena{
         this.game = null;
         this.pontos = 0;
         this.preparar();
+        this.atual = null;
         
     }
     desenhar(){
@@ -107,6 +108,10 @@ export default class Cena{
         this.idAnim = null;
         this.mapa = null;
         this.rodando = true;
+        this.atual = mapa;
     }
+    atualizaPontos(){
+        document.getElementById("pontos").textContent = parseInt(document.getElementById("pontos").textContent) + 1;
+      }
    
 }

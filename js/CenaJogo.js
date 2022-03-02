@@ -1,10 +1,8 @@
 import Cena from './Cena.js'
 import Mapa from "./Mapa.js"
-import PcSprite from './PcSprite.js'
-import InimigoSprite from './InimigoSprite.js'
+import Sprite from './Sprite.js'
 import modeloMapa1 from './maps/mapa1.js'
-import GeraSprite from './GeraSprite.js'
-import SpriteSaida from './SpriteSaida.js'
+
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
@@ -14,7 +12,7 @@ export default class CenaJogo extends Cena {
         else if (a.tags.has("pc") && b.tags.has("coin")) {
             this.aRemover.push(b);
             this.assets.play("coin");
-            this.game.pontos += 10;
+            super.atualizaPontos();
         } 
         else {
             if (a.tags.has("pc") || (a.tags.has("enemy") && b.tags.has("enemy")))
@@ -38,58 +36,108 @@ export default class CenaJogo extends Cena {
     
 
 
-    preparar() {
-        super.preparar();
-        const mapa1 = new Mapa();
-        mapa1.carregaMapa(modeloMapa1);
+    preparar(modeloMapa = modeloMapa1) {
+        super.preparar(modeloMapa);
+        this.atual = modeloMapa;
+        const mapa1 = new Mapa(10,14,32);
+        mapa1.carregaMapa(modeloMapa);
         this.configuraMapa(mapa1);
 
-        const pc = new PcSprite({ x: 96, y: 96,image: this.assets?.img("garota"), tags: ["pc"],});
-        
-        this.adicionar(pc);
-
-        const en1 = new InimigoSprite({
-            x: 12 * 64 + 10,
-            image: this.assets?.img("orc"),
-            tags: ["enemy"],
-          });
-          const en2 = new InimigoSprite({
-            x: 6 * 64 + 10,
-            image: this.assets?.img("garoto"),
-            tags: ["enemy"],
-          });
-          const en3 = new InimigoSprite({
-            x: 64 + 10,
-            y: 3 * 64 + 10,
-            image: this.assets?.img("orc"),
-            tags: ["enemy"],
-          });
-          en1.escolheAlvo(pc);
-          en2.escolheAlvo(pc);
-          en3.escolheAlvo(pc);
-          this.adicionar(en1);
-          this.adicionar(en2);
-          this.adicionar(en3);
-
-          const gerar = new GeraSprite(this);
-            for (let i = 0; i < 5; i++) {
-            gerar.create("coin", ["coin"]);
+        const pc = new Sprite({ x: 50, y: 275 });
+        //
+        const cena = this;
+        pc.controlar = function (dt) {
+        if (cena.input.comandos.get("MOVE_LEFT")) {
+            this.vx = -150;
+        } else if (cena.input.comandos.get("MOVE_RIGHT")) {
+            this.vx = +150;
+        } else {
+            this.vx = 0;
         }
 
-        const sair = new SpriteSaida({
-            x: 64 * 13 -16,
-            y: 64 * 9 - 10,
-            image: this.assets?.img("porta"),
-            tags: ["sair"],
-            p: 0,
-            poses: [{ row: 0, init: 0, end: 4, vel: 5, action: "abrir" }]
-        });
-        this.adicionar(sair);
-  
+        if (cena.input.comandos.get("MOVE_UP")) {
+            this.vy = -150;
+        } else if (cena.input.comandos.get("MOVE_DOWN")) {
+            this.vy = +150;
+        } else {
+            this.vy = 0;
+        }
+        };
+        this.adicionar(pc);
 
-    }
-}
-        
-    
+        function perserguirPC(dt) {
+            this.vx = 25 * Math.sign(pc.x - this.x);
+            this.vy = 25 * Math.sign(pc.y - this.y);
+          }
+      
+          const en1 = new Sprite({   
+            x: 360,
+            color: "red",
+            controlar: perserguirPC,
+            tags: ["enemy"],
+          });
+          this.adicionar(en1);
+
+          this.adicionar(
+            new Sprite({
+              x: 55,
+              y: 160,
+              color: "yellow",
+              tags: ["coin"],
+            })
+          );
+      
+          this.adicionar(
+            new Sprite({
+              x: 345,
+              y: 60,
+              color: "yellow",
+              tags: ["coin"],
+            })
+          );
+      
+          this.adicionar(
+            new Sprite({
+              x: 275,
+              y: 260,
+              color: "yellow",
+              tags: ["coin"],
+            })
+          );
+      
+          this.adicionar(
+            new Sprite({
+              x: 400,
+              y: 250,
+              color: "blue",
+              tags: ["porta"],
+            })
+          );
+          
+          this.adicionar(
+            new Sprite({
+              x: 115,
+              y: 70,
+              vy: 10,
+              color: "red",
+              controlar: perserguirPC,
+              tags: ["enemy"],
+            })
+          );
+          this.adicionar(
+            new Sprite({
+              x: 115,
+              y: 160,
+              vy: -10,
+              color: "red",
+              controlar: perserguirPC,
+              tags: ["enemy"],
+            })
+          );
+      
+          
+        }
+      }
+      
     
 
