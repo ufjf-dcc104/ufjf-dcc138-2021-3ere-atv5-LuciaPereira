@@ -16,6 +16,10 @@ const assets = new AssetManager(mixer);
 assets.carregaImagem("arvores","assets/arvores.png");
 assets.carregaImagem("chao","assets/chao.png");
 assets.carregaImagem("parede","assets/parede.png");
+assets.carregaImagem("moeda","assets/moeda.png");
+assets.carregaImagem("porta","assets/porta.png");
+assets.carregaImagem("garoto","assets/garoto.png");
+assets.carregaImagem("ghost","assets/ghost.png");
 assets.carregaAudio("hurt","assets/hurt.wav"); 
 assets.carregaAudio("coin","assets/coin.wav");
 assets.carregaAudio("boom","assets/boom.wav");
@@ -46,21 +50,4 @@ game.adicionarCena("vitoria", cena4);
 
 game.iniciar();
 
-document.addEventListener("keydown" , (e)=>{
-    switch (e.key) {
-        case "s":
-            game.iniciar();
-            break;
-            case "S":
-                game.parar();
-                break;
-                case "c":
-                    assets.play("coin");
-                    break;
-                    case "b":
-                        assets.play("boom");
-                        break;
-                        
-     
-    }
-});
+

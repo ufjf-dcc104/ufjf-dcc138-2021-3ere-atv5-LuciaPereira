@@ -1,7 +1,10 @@
 import Cena from './Cena.js'
 import Mapa from "./Mapa.js"
 import Sprite from './Sprite.js'
+import SpriteMoeda from './SpriteMoeda.js'
 import modeloMapa1 from './maps/mapa1.js'
+import SpritePorta from './SpritePorta.js'
+import SpriteInimigo from './SpriteInimigo.js'
 
 
 export default class CenaJogo extends Cena {
@@ -31,7 +34,8 @@ export default class CenaJogo extends Cena {
         if (!this.aRemover.includes(b)){ this.aRemover.push(b);}
         
     
-        if (a.tags.has("pc") && b.tags.has("enemy")) {
+        if (a.tags.has("pc") && b.tags.has("boom")) {
+          this.assets.play("boom");
           this.game.selecionaCena("fim");
         }
     
@@ -71,19 +75,17 @@ export default class CenaJogo extends Cena {
             this.vx = 25 * Math.sign(pc.x - this.x);
             this.vy = 25 * Math.sign(pc.y - this.y);
         }
-          
-        const en1 = new Sprite({ x: 360,color: "red",controlar: perserguirPC,tags: ["enemy"],});
-        this.adicionar(en1);
-
-        this.adicionar(new Sprite({x: 115,y: 70,vy: 10,color: "red",controlar: perserguirPC,tags: ["enemy"],}));
-
-        this.adicionar(new Sprite({x: 55,y: 160,color: "yellow",tags: ["coin"],}));
+        
+        this.adicionar(new SpriteInimigo({ x: 260,vy: 20,cena: this,controlar: perserguirPC,tags: ["boom"],}));
+        this.adicionar(new SpriteInimigo({x: 115,y: 70,vy: 10,cena: this,controlar: perserguirPC,tags: ["boom"],}));
+       
+        this.adicionar(new SpriteMoeda({x: 55,y: 160, cena: this, tags: ["coin"],}));
       
-        this.adicionar(new Sprite({x: 345,y: 60,color: "yellow",tags: ["coin"],}));
+        this.adicionar(new SpriteMoeda({x: 345,y: 60,cena: this,tags: ["coin"],}));
       
-        this.adicionar(new Sprite({x: 275,y: 260,color: "yellow",tags: ["coin"],}));
+        this.adicionar(new SpriteMoeda({x: 275,y: 260,cena: this,tags: ["coin"],}));          
       
-        this.adicionar(new Sprite({x: 400,y: 250,color: "blue",tags: ["hurt"],}));
+        this.adicionar(new SpritePorta({x: 400,y: 250, w:32,h:32,cena: this,tags: ["hurt"],}));
           
     }
 }
