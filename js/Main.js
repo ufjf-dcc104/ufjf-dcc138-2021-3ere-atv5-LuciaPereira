@@ -38,12 +38,14 @@ input.configurarTeclado({
 const game = new Game(canvas,assets,input);
 const cena0 = new CenaCarregando();
 const cena1 = new CenaJogo();
-const cena2 = new CenaFim();
-const cena3 = new CenaVitoria();
+const cena2 = new CenaJogo2();
+const cena3 = new CenaFim();
+const cena4 = new CenaVitoria();
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo",cena1);
-game.adicionarCena("fim", cena2);
-game.adicionarCena("vitoria", cena3);
+game.adicionarCena("jogo2",cena2);
+game.adicionarCena("fim", cena3);
+game.adicionarCena("vitoria", cena4);
 
 game.iniciar();
 

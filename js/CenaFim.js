@@ -11,12 +11,15 @@ export default class CenaFim extends Cena {
         this.ctx.fillText('GAME OVER',
             this.canvas.width / 2,
             this.canvas.height / 2);
+        this.ctx.fillText(
+            'Pontos: '+ document.getElementById("pontos").textContent,
+            this.canvas.width / 2,
+            this.canvas.height / 2 + 40);
+
         if (this.assets.acabou()) {
-            this.ctx.fillStyle = 'yellow'
             this.ctx.fillText('Aperte espaço para jogar novamente',
                 this.canvas.width / 2,
                 this.canvas.height / 2 + 40);
-
         }
     }
     quadro(t) {

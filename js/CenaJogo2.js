@@ -10,7 +10,7 @@ export default class CenaJogo2 extends Cena {
       (a.tags.has("pc") && b.tags.has("porta")) ||
       (b.tags.has("pc") && a.tags.has("porta"))
     ) {
-      this.game.selecionaCena("vitoria");
+      this.game.selecionaCena("fim");
       return;
     }
     if (
@@ -22,7 +22,7 @@ export default class CenaJogo2 extends Cena {
       if (!this.toRemove.includes(b) && b.tags.has("coin"))
         this.toRemove.push(b);
       this.assets.play("coin");
-      document.getElementById("pontos").textContent = parseInt(document.getElementById("pontos").textContent) + 1;
+      super.atualizaPontos();
       return;
     }
 
@@ -73,13 +73,13 @@ export default class CenaJogo2 extends Cena {
     const en1 = new Sprite({x: 360,color: "red",controlar: perserguirPC,tags: ["enemy"],});
     this.adicionar(en1);
 
-    this.adicionar(new Sprite({x: 55,y: 160,color: "yellow",tags: ["coin"],}));
+    this.adicionar(new Sprite({x: 50,y: 50,color: "yellow",tags: ["coin"],}));
     
     this.adicionar(new Sprite({x: 345,y: 60,color: "yellow",tags: ["coin"],}));
   
-    this.adicionar(new Sprite({x: 275, y: 260,color: "yellow",tags: ["coin"],}));
+    this.adicionar(new Sprite({x: 205, y: 260,color: "yellow",tags: ["coin"],}));
   
-    this.adicionar( new Sprite({x: 400,y: 250, color: "blue",tags: ["porta"],}));
+    this.adicionar( new Sprite({x: 400,y: 270, color: "blue",tags: ["porta"],}));
 
     this.adicionar(new Sprite({ x: 115,y: 70,vy: 10,color: "red",controlar: perserguirPC,tags: ["enemy"],}));
     this.adicionar(new Sprite({x: 115,y: 160,vy: -10,color: "red",controlar: perserguirPC,tags: ["enemy"],}));
