@@ -3,6 +3,9 @@ import Cena from "./Cena.js"
 import Sprite from "./Sprite.js"
 import Mapa from "./Mapa.js"
 import modeloMapa2 from "./maps/mapa2.js"
+import SpriteMoeda from "./SpriteMoeda.js";
+import SpritePorta from "./SpritePorta.js";
+import SpriteInimigo from "./SpriteInimigo.js";
 
 export default class CenaJogo2 extends Cena {
     quandoColidir(a, b) {    
@@ -69,19 +72,20 @@ export default class CenaJogo2 extends Cena {
       this.vy = 25 * Math.sign(pc.y - this.y);
     }
 
-    const en1 = new Sprite({x: 360,color: "red",controlar: perserguirPC,tags: ["enemy"],});
+    const en1 = new SpriteInimigo({x: 360,cena: this,controlar: perserguirPC,tags: ["boom"],});
     this.adicionar(en1);
 
-    this.adicionar(new Sprite({ x: 115,y: 70,vy: 10,color: "red",controlar: perserguirPC,tags: ["enemy"],}));
-    this.adicionar(new Sprite({x: 115,y: 160,vy: -10,color: "red",controlar: perserguirPC,tags: ["enemy"],}));
+    this.adicionar(new SpriteInimigo({ x: 115,y: 70,vy: 10,cena: this,controlar: perserguirPC,tags: ["boom"],}));
 
-    this.adicionar(new Sprite({x: 50,y: 50,color: "yellow",tags: ["coin"],}));
+    this.adicionar(new SpriteInimigo({x: 115,y: 160,vy: -10,cena: this,controlar: perserguirPC,tags: ["boom"],}));
+
+    this.adicionar(new SpriteMoeda({x: 50,y: 50,cena: this,tags: ["coin"],}));
     
-    this.adicionar(new Sprite({x: 345,y: 60,color: "yellow",tags: ["coin"],}));
+    this.adicionar(new SpriteMoeda({x: 345,y: 60,cena: this,tags: ["coin"],}));
   
-    this.adicionar(new Sprite({x: 205, y: 260,color: "yellow",tags: ["coin"],}));
+    this.adicionar(new SpriteMoeda({x: 205, y: 260,cena: this,tags: ["coin"],}));
   
-    this.adicionar( new Sprite({x: 400,y: 270, color: "blue",tags: ["hurt"],}));
+    this.adicionar( new SpritePorta({x: 400,y: 270, w:32, h:32, cena: this,tags: ["hurt"],}));
 
        
   }

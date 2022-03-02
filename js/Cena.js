@@ -1,4 +1,5 @@
 import Sprite from "./Sprite.js"
+import SpriteInimigo from "./SpriteInimigo.js";
 export default class Cena{
     /* E responsavel por desenhar elementos na tela eum uma animaçãco
     */
@@ -113,7 +114,7 @@ export default class Cena{
     criaSprites(num = 1, chaseFunction, randomColor) {
         let sprites = [];
         for (let i = 0; i < num; i++) {
-          let sprite = new Sprite({
+          let sprite = new SpriteInimigo({
             x: this.getRandomInt(40, 400),
             y: this.getRandomInt(50, 275),
             vx: this.getRandomInt(-10, 10),

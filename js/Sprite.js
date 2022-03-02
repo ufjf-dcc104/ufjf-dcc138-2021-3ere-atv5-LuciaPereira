@@ -1,3 +1,5 @@
+
+
 export default class Sprite{
     /*
     è responsavel por modelar algo que  se move na tela
@@ -30,7 +32,9 @@ export default class Sprite{
     }
     desenhar(ctx){
        ctx.fillStyle = this.color;
-       ctx.fillRect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);                              
+       ctx.fillRect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);  
+           
+                                  
    }
     controlar(dt){
 
