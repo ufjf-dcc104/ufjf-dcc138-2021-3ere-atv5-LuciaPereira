@@ -9,7 +9,7 @@ export default class CenaJogo2 extends Cena {
     if ((a.tags.has("pc") && b.tags.has("hurt")) ||(b.tags.has("pc") && a.tags.has("hurt")))
     {
       this.assets.play("hurt");
-      this.game.selecionaCena("fim");
+      this.game.selecionaCena("vitoria");
       return;
     }
     if ((a.tags.has("pc") && b.tags.has("coin")) || (b.tags.has("pc") && a.tags.has("coin"))) 

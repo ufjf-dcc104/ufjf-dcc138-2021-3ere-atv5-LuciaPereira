@@ -1,11 +1,10 @@
 import Cena from './Cena.js'
-
 export default class CenaFim extends Cena {
 
     desenhar() {
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.font = '30px Impact';
+        this.ctx.font = '20px Impact';
         this.ctx.fillStyle = 'red';
         this.ctx.textAlign = 'center';
         this.ctx.fillText('GAME OVER',
@@ -19,7 +18,7 @@ export default class CenaFim extends Cena {
         if (this.assets.acabou()) {
             this.ctx.fillText('Aperte espaço para jogar novamente',
                 this.canvas.width / 2,
-                this.canvas.height / 2 + 40);
+                this.canvas.height / 2 + 80);
         }
     }
     quadro(t) {
