@@ -50,4 +50,3 @@ game.adicionarCena("vitoria", cena4);
 
 game.iniciar();
 
-
