@@ -76,12 +76,21 @@ export default class CenaJogo extends Cena {
            this.vx = 15 * Math.sign(pc.x - this.x);
            this.vy = 15 * Math.sign(pc.y - this.y);
            
-        }
-        
-        
-        this.adicionar(new SpriteInimigo({ x: 260,vy: 20,cena: this,controlar: perseguirPC,tags: ["boom"],}));
-        this.adicionar(new SpriteInimigo({x: 115,y: 70,vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
-        this.adicionar(new SpriteInimigo({x: 140,y: 160,vy: -10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
+        }  /*const en1 = new SpriteInimigo({ x: 300, y:100,cena: this, controlar: perseguirPC, tags: ["boom"],});
+        en1.controlar = perseguirPC;
+        this.adicionar(en1);*/
+
+        const en2 = new SpriteInimigo({ x: 260,vy: 20, vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"],});
+        en2.controlar = perseguirPC;
+        this.adicionar(en2);
+
+        const en3 = new SpriteInimigo({x: 115,y: 70,vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"],});
+        en3.controlar = perseguirPC;
+        this.adicionar(en3);
+
+        const en4 = new SpriteInimigo({x: 140,y: 160,vy: -10,cena: this,controlar: perseguirPC,tags: ["boom"],});
+        en4.controlar = perseguirPC;
+        this.adicionar(en4);
        
         this.adicionar(new SpriteMoeda({x: 55,y: 160, cena: this, tags: ["coin"],}));
       

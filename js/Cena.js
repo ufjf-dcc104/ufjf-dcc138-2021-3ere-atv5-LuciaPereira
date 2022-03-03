@@ -111,7 +111,7 @@ export default class Cena{
     atualizaPontos(){
         document.getElementById("pontos").textContent = parseInt(document.getElementById("pontos").textContent) + 1;
     }
-    criaSprites(num = 1, per, random) {
+    criaSprites(num = 1, per, randomC) {
         let sprites = [];
         for (let i = 0; i < num; i++) {
           let sprite = new SpriteInimigo({
@@ -119,7 +119,7 @@ export default class Cena{
             y: this.getRandomInt(50, 275),
             vx: this.getRandomInt(-10, 10),
             vy: this.getRandomInt(-10, 10),
-            imagem: random == true ? this.getRandom() : "ghost", 
+            imagem: randomC == true ? this.getRandomC() : "ghost", 
             tags: ["boom"],
             controlar: per,
     

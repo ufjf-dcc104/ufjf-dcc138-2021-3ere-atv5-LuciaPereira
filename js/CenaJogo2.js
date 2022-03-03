@@ -25,17 +25,17 @@ export default class CenaJogo2 extends Cena {
         super.atualizaPontos();
         return;
     }
-    if (!this.aRemover.includes(a))
-         this.aRemover.push(a);
-    if (!this.aRemover.includes(b)) 
-        this.aRemover.push(b);
+    if (!this.aRemover.includes(a)){
+      this.aRemover.push(a);}
+ if (!this.aRemover.includes(b)) {
+     this.aRemover.push(b);}
 
     if (a.tags.has("pc") && b.tags.has("boom") || b.tags.has("pc") && a.tags.has("boom")) 
     {
       this.assets.play("boom");
       this.game.selecionaCena("fim");
     }
-    this.assets.play("boom");
+    //this.assets.play("boom");
     console.log(this.aRemover);
 
   }
@@ -75,18 +75,25 @@ export default class CenaJogo2 extends Cena {
       this.vy = 25 * Math.sign(pc.y - this.y);
     }
 
-    const en1 = new SpriteInimigo({x: 360,cena: this,controlar: perseguirPC,tags: ["boom"],});
+    const en1 = new SpriteInimigo({x: 360,y:250, cena: this,controlar: perseguirPC,tags: ["boom"]});
+    en1.controlar = perseguirPC;
     this.adicionar(en1);
 
-    this.adicionar(new SpriteInimigo({ x: 115,y: 70,vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
+    const en2 = new SpriteInimigo({ x: 115,y: 70,vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"]});
+    en2.controlar = perseguirPC;
+    this.adicionar(en2);
 
-    this.adicionar(new SpriteInimigo({x: 115,y: 160,vy: -10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
+    const en3 = new SpriteInimigo({x: 115,y: 160,vy: -10,cena: this,controlar: perseguirPC,tags: ["boom"]});
+    en3.controlar = perseguirPC;
+    this.adicionar(en3);
 
     this.adicionar(new SpriteMoeda({x: 50,y: 50,cena: this,tags: ["coin"],}));
     
     this.adicionar(new SpriteMoeda({x: 345,y: 60,cena: this,tags: ["coin"],}));
   
     this.adicionar(new SpriteMoeda({x: 205, y: 260,cena: this,tags: ["coin"],}));
+
+    this.adicionar(new SpriteMoeda({x: 200,y: 100,cena: this,tags: ["coin"],}));
   
     this.adicionar( new SpritePorta({x: 400,y: 270, w:32, h:32, cena: this,tags: ["hurt"],}));
 
