@@ -32,7 +32,7 @@ export default class Sprite{
     }
     desenhar(ctx,assets){
         if(this.imagem == "garoto"){
-            ctx.drawImage(this.cena.assets.img("garoto"),2, 2*64, 64, 64, this.x -24, this.y , 30, 30);                      
+            ctx.drawImage(this.cena.assets.img("garoto"), 2, 2*64, 64, 64, this.x -24, this.y , 35, 35);                      
         }
     }
     controlar(dt){
