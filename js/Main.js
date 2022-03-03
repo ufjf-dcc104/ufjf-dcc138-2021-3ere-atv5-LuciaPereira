@@ -6,7 +6,7 @@ import CenaJogo from "./CenaJogo.js"
 import CenaJogo2 from "./CenaJogo2.js"
 import CenaCarregando from "./CenaCarregando.js"
 import CenaFim from "./CenaFim.js"
-import CenaVitoria from "./cenaVitoria.js";
+
 
 
 const input = new InputManager();
