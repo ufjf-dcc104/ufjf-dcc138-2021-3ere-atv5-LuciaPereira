@@ -8,14 +8,14 @@ export default class AssetManager{
 
     }
     carregaImagem(chave, source){
-        const img1 = new Image();
+        const img = new Image();
         //const that = this;
-        img1.addEventListener("load",()=>{
+        img.addEventListener("load",()=>{
             console.log(`Imagem ${this.carregadas}/${this.aCarregar} carregada`);
             this.carregadas++;
         });
-        img1.src= source;
-        this.imagens.set(chave, img1);
+        img.src= source;
+        this.imagens.set(chave, img);
         this.aCarregar++;
     }
     carregaAudio(chave, source){

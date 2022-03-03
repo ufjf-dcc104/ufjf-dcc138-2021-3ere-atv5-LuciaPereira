@@ -1,5 +1,4 @@
 
-
 export default class Sprite{
     /*
     è responsavel por modelar algo que  se move na tela
@@ -9,7 +8,8 @@ export default class Sprite{
         y=100, 
         w=20, 
         h=20, 
-        color = "white",
+        assets,
+        imagem,
         vx = 0,
         vy = 0,
         controlar = () => { },
@@ -21,23 +21,21 @@ export default class Sprite{
         this.vy = vy;
         this.w = w;
         this.h = h;
-        this.color = color;
         this.cena = null;
         this.mx = 0;
         this.my = 0;
         controlar = controlar;
+        this.assets =  this.assets;
+        this.imagem = imagem;
         this.tags = new Set();
-        tags.forEach(tag => this.tags.add(tag));
-        
+        tags.forEach(tag => this.tags.add(tag));        
     }
-    desenhar(ctx){
-       ctx.fillStyle = this.color;
-       ctx.fillRect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);  
-           
-                                  
-   }
+    desenhar(ctx,assets){
+        if(this.imagem == "garoto"){
+            ctx.drawImage(this.cena.assets.img("garoto"), 2, 2*64, 64, 64, this.x -24, this.y , 35, 35);                      
+        }
+    }
     controlar(dt){
-
     }
     mover(dt){
         this.x = this.x + this.vx*dt;

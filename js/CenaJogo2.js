@@ -30,22 +30,25 @@ export default class CenaJogo2 extends Cena {
     if (!this.aRemover.includes(b)) 
         this.aRemover.push(b);
 
-    if (a.tags.has("pc") && b.tags.has("enemy") || b.tags.has("pc") && a.tags.has("enemy")) 
+    if (a.tags.has("pc") && b.tags.has("boom") || b.tags.has("pc") && a.tags.has("boom")) 
     {
-        this.game.selecionaCena("fim");
+      this.assets.play("boom");
+      this.game.selecionaCena("fim");
     }
+    this.assets.play("boom");
+    console.log(this.aRemover);
 
   }
 
   preparar() {
     super.preparar();
-    const mapa2 = new Mapa(10, 14, 32);
+    const mapa2 = new Mapa(10, 14, 32,this.assets);
     mapa2.carregaMapa(modeloMapa2);
     this.configuraMapa(mapa2);
-    this.adicionaSprites(3, perserguirPC, false);
+    this.adicionaSprites(3, perseguirPC, false);
     this.geraSprite(4000);
     
-    const pc = new Sprite({ x: 50, y: 275 });
+    const pc = new Sprite({x: 50, vx: 275, imagem: "garoto", assets:this.assets});
     pc.tags.add("pc");
     const cena = this;
     pc.controlar = function (dt) {
@@ -67,17 +70,17 @@ export default class CenaJogo2 extends Cena {
     };
     this.adicionar(pc);
 
-    function perserguirPC(dt) {
+    function perseguirPC(dt) {
       this.vx = 25 * Math.sign(pc.x - this.x);
       this.vy = 25 * Math.sign(pc.y - this.y);
     }
 
-    const en1 = new SpriteInimigo({x: 360,cena: this,controlar: perserguirPC,tags: ["boom"],});
+    const en1 = new SpriteInimigo({x: 360,cena: this,controlar: perseguirPC,tags: ["boom"],});
     this.adicionar(en1);
 
-    this.adicionar(new SpriteInimigo({ x: 115,y: 70,vy: 10,cena: this,controlar: perserguirPC,tags: ["boom"],}));
+    this.adicionar(new SpriteInimigo({ x: 115,y: 70,vy: 10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
 
-    this.adicionar(new SpriteInimigo({x: 115,y: 160,vy: -10,cena: this,controlar: perserguirPC,tags: ["boom"],}));
+    this.adicionar(new SpriteInimigo({x: 115,y: 160,vy: -10,cena: this,controlar: perseguirPC,tags: ["boom"],}));
 
     this.adicionar(new SpriteMoeda({x: 50,y: 50,cena: this,tags: ["coin"],}));
     
@@ -89,5 +92,6 @@ export default class CenaJogo2 extends Cena {
 
        
   }
+  
 }
   

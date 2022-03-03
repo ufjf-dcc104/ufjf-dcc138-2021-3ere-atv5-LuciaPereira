@@ -17,7 +17,7 @@ export default class Cena{
     desenhar(){
         this.ctx.fillStyle = "#2f8136";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.mapa?.desenhar(this.ctx);
+        this.mapa?.desenhar(this.ctx, this.assets);
         
         if(this.assets.acabou()){
             for (let s = 0; s < this.sprites.length; s++) {
@@ -66,7 +66,7 @@ export default class Cena{
             const spriteA = this.sprites[a];
             for (let b = a + 1; b < this.sprites.length; b++) {
                 const spriteB = this.sprites[b];
-                if (spriteA.colidiuCom(spriteB)) {
+                if (spriteA.colidiuCom(spriteB) )  {
                     //this.assets.play("hurt");
                     this.quandoColidir(spriteA,spriteB); 
                 }
@@ -111,7 +111,7 @@ export default class Cena{
     atualizaPontos(){
         document.getElementById("pontos").textContent = parseInt(document.getElementById("pontos").textContent) + 1;
     }
-    criaSprites(num = 1, chaseFunction, randomColor) {
+    criaSprites(num = 1, per, random) {
         let sprites = [];
         for (let i = 0; i < num; i++) {
           let sprite = new SpriteInimigo({
@@ -119,18 +119,18 @@ export default class Cena{
             y: this.getRandomInt(50, 275),
             vx: this.getRandomInt(-10, 10),
             vy: this.getRandomInt(-10, 10),
-            color: randomColor == true ? this.getRandomColor() : "red",
-            tags: ["enemy"],
-            control: chaseFunction,
+            imagem: random == true ? this.getRandom() : "ghost", 
+            tags: ["boom"],
+            controlar: per,
     
           });
           sprites.push(sprite);
         }
         return sprites;
     }
-    adicionaSprites(num, chaseFunction, randomColor)
+    adicionaSprites(num, per, randomC)
     {
-      let sprites = this.criaSprites(num, chaseFunction, randomColor);
+      let sprites = this.criaSprites(num, per, randomC);
       for (let i = 0; i < sprites.length; i++) {
         this.adicionar(sprites[i]);
       }
@@ -142,13 +142,13 @@ export default class Cena{
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
     
-      getRandomColor() {
+      getRandomC() {
         let letters = "0123456789ABCDEF";
-        let color = "#";
+        let imagem = "#";
         for (let i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
+          imagem += letters[Math.floor(Math.random() * 16)];
         }
-        return color;
+        return imagem;
       }
       geraSprite(interval){
           setInterval(() => { this.adicionaSprites(1);}, interval);
